@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3"><h2>Blood Requests</h2><a href="{{ url_for('add_request') }}" class="btn btn-warning">New Request</a></div>
+<table class="table table-bordered">
+    <thead class="table-dark"><tr><th>ID</th><th>Hospital</th><th>Group</th><th>Qty</th><th>Priority</th><th>Status</th></tr></thead>
+    <tbody>
+        {% for r in records %}<tr><td>{{ r.request_id }}</td><td>{{ r.hospital_name }}</td><td>{{ r.blood_group }}</td><td>{{ r.quantity }}</td><td>{{ r.priority }}</td>
+        <td><span class="badge bg-{{ 'warning' if r.status=='Pending' else 'success' }} text-dark">{{ r.status }}</span></td></tr>{% endfor %}
+    </tbody>
+</table>
+{% endblock %}

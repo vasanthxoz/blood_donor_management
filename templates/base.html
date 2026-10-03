@@ -1,0 +1,165 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Management System</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet"
+          href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+
+    <link href="{{ url_for('static', filename='css/style.css') }}" rel="stylesheet">
+</head>
+
+<body>
+
+<div class="app-wrapper">
+
+    <!-- Dark Sidebar -->
+    {% if session.get('admin_id') %}
+    <nav class="sidebar">
+
+        <!-- Medical Symbol -->
+        <div class="sidebar-header medical-logo">
+            <div class="medical-logo-circle">
+                <i class="bi bi-heart-pulse-fill"></i>
+            </div>
+        </div>
+
+        <!-- Sidebar Menu -->
+        <ul class="nav flex-column mt-4 w-100">
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('dashboard') }}">
+                    <i class="bi bi-grid-fill"></i>
+                    Dashboard
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('donors') }}">
+                    <i class="bi bi-people-fill"></i>
+                    Donors
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('donor_health') }}">
+                    <i class="bi bi-heart-pulse-fill"></i>
+                    Health Records
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('eligibility') }}">
+                    <i class="bi bi-clipboard-check-fill"></i>
+                    Eligibility
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('donations') }}">
+                    <i class="bi bi-arrow-down-circle-fill"></i>
+                    Donations
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('blood_stock') }}">
+                    <i class="bi bi-box-seam-fill"></i>
+                    Inventory
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('expiry') }}">
+                    <i class="bi bi-clock-history"></i>
+                    Expiry Tracking
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('hospitals') }}">
+                    <i class="bi bi-hospital-fill"></i>
+                    Hospitals
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('blood_requests') }}">
+                    <i class="bi bi-file-earmark-medical-fill"></i>
+                    Requests
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('allocation') }}">
+                    <i class="bi bi-arrow-left-right"></i>
+                    Allocation
+                </a>
+            </li>
+
+            <li class="nav-item">
+                <a class="nav-link" href="{{ url_for('reports') }}">
+                    <i class="bi bi-bar-chart-fill"></i>
+                    Reports
+                </a>
+            </li>
+
+        </ul>
+
+    </nav>
+    {% endif %}
+
+
+    <!-- Main Content Wrapper -->
+    <div class="main-content">
+
+        <!-- Top Navbar -->
+        {% if session.get('admin_id') %}
+        <div class="top-navbar">
+
+            <h1 class="page-title">Dashboard</h1>
+
+            <div class="d-flex align-items-center gap-3">
+                <a href="{{ url_for('logout') }}"
+                   class="btn btn-outline-danger px-4 rounded-pill fw-bold">
+                    Logout
+                </a>
+            </div>
+
+        </div>
+        {% endif %}
+
+
+        <!-- Dynamic Content -->
+        <div class="p-4 pt-0">
+
+            {% with messages = get_flashed_messages(with_categories=true) %}
+
+                {% if messages %}
+
+                    {% for category, message in messages %}
+
+                        <div class="alert alert-{{ category }} rounded-4 border-0 shadow-sm">
+                            {{ message }}
+                        </div>
+
+                    {% endfor %}
+
+                {% endif %}
+
+            {% endwith %}
+
+            {% block content %}{% endblock %}
+
+        </div>
+
+    </div>
+
+</div>
+
+</body>
+</html>

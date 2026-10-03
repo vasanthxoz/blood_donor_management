@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<div class="d-flex justify-content-between mb-3">
+    <h2>Donations</h2>
+</div>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Donation ID</th>
+            <th>Donor</th>
+            <th>Group</th>
+            <th>Quantity</th>
+            <th>Date</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for r in records %}
+        <tr>
+            <td>{{ r.donation_id }}</td>
+            <td>{{ r.name }}</td>
+            <td>{{ r.blood_group }}</td>
+            <td>{{ r.quantity }}</td>
+            <td>{{ r.donation_date }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

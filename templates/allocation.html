@@ -1,0 +1,89 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Blood Allocation</h2>
+<hr>
+
+<p>
+    Review the pending hospital requests and allocate available blood stock.
+</p>
+
+<table class="table table-bordered">
+
+    <thead class="table-dark">
+        <tr>
+            <th>Hospital</th>
+            <th>Blood Group</th>
+            <th>Quantity</th>
+            <th>Priority</th>
+            <th>Action</th>
+        </tr>
+    </thead>
+
+    <tbody>
+
+        {% for r in requests %}
+
+        <tr>
+
+            <td>
+                {{ r.hospital_name }}
+            </td>
+
+            <td>
+                {{ r.blood_group }}
+            </td>
+
+            <td>
+                {{ r.quantity }}
+            </td>
+
+            <td>
+                {% if r.priority == 'Emergency' %}
+                    <span class="badge bg-danger">
+                        Emergency
+                    </span>
+
+                {% elif r.priority == 'Urgent' %}
+                    <span class="badge bg-warning text-dark">
+                        Urgent
+                    </span>
+
+                {% else %}
+                    <span class="badge bg-secondary">
+                        Normal
+                    </span>
+                {% endif %}
+            </td>
+
+            <td>
+
+                <form method="POST">
+
+                    <input
+                        type="hidden"
+                        name="request_id"
+                        value="{{ r.request_id }}"
+                    >
+
+                    <button
+                        type="submit"
+                        class="btn btn-sm btn-success"
+                    >
+                        Check & Allocate
+                    </button>
+
+                </form>
+
+            </td>
+
+        </tr>
+
+        {% endfor %}
+
+    </tbody>
+
+</table>
+
+{% endblock %}

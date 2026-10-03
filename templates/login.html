@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700&display=swap');
+
+        /* --- Global Reset --- */
+        html, body {
+            margin: 0 !important;
+            padding: 0 !important;
+            height: 100%;
+            width: 100%;
+            overflow-x: hidden;
+        }
+
+        /* --- Fullscreen Login Wrapper --- */
+        body {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-color: #e0e7ff; /* Soft indigo background */
+            font-family: 'Nunito', sans-serif;
+        }
+
+        /* --- White Card --- */
+        .login-card {
+            background: #ffffff;
+            padding: 50px 40px;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            width: 100%;
+            max-width: 400px;
+            box-sizing: border-box;
+        }
+
+        .login-card h2 {
+            text-align: center;
+            font-weight: 400;
+            font-size: 1.2rem;
+            letter-spacing: 1px;
+            color: #333;
+            margin-top: 0;
+            margin-bottom: 40px;
+        }
+
+        .login-card form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* --- Input Groups --- */
+        .input-group {
+            margin-bottom: 25px;
+        }
+
+        .input-group label {
+            display: block;
+            font-size: 0.7rem;
+            font-weight: 700;
+            color: #888;
+            margin-bottom: 8px;
+            letter-spacing: 0.5px;
+        }
+
+        .login-card input[type="text"],
+        .login-card input[type="password"] {
+            width: 100%;
+            padding: 12px 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+            outline: none;
+            background-color: #fff;
+        }
+
+        .login-card input[type="text"]:focus,
+        .login-card input[type="password"]:focus {
+            border-color: #333;
+        }
+
+        /* --- Buttons --- */
+        .login-card .btn-login {
+            background-color: #222; 
+            color: #ffffff;
+            padding: 12px 35px;
+            border: none;
+            border-radius: 30px; 
+            font-family: 'Nunito', sans-serif;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            align-self: flex-start;
+            margin-top: 10px;
+        }
+
+        .login-card .btn-login:hover {
+            background-color: #000;
+        }
+
+        /* --- Alerts --- */
+        .alert {
+            padding: 10px;
+            border-radius: 4px;
+            background-color: #ffe5e5;
+            color: #d32f2f;
+            font-size: 0.85rem;
+            text-align: center;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="login-card">
+        <h2>ACCOUNT LOGIN</h2>
+        
+        <form method="POST" action="/login">
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <div class="alert">{{ message }}</div>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <div class="input-group">
+                <label>USERNAME</label>
+                <input type="text" name="username" required autocomplete="off">
+            </div>
+            
+            <div class="input-group">
+                <label>PASSWORD</label>
+                <input type="password" name="password" required>
+            </div>
+
+            <button type="submit" class="btn-login">Login</button>
+        </form>
+    </div>
+
+</body>
+</html>

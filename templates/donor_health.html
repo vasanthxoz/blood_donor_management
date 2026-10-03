@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Donor Health Records</h2>
+    <a href="{{ url_for('add_health') }}" class="btn btn-primary">Add Health Record</a>
+</div>
+<table class="table table-bordered">
+    <thead class="table-dark"><tr><th>Donor Name</th><th>BP</th><th>Weight</th><th>Hemoglobin</th><th>Status</th><th>Date</th></tr></thead>
+    <tbody>
+        {% for r in records %}<tr><td>{{ r.name }}</td><td>{{ r.blood_pressure }}</td><td>{{ r.weight }}</td><td>{{ r.hemoglobin }}</td><td>{{ r.health_status }}</td><td>{{ r.checked_date }}</td></tr>{% endfor %}
+    </tbody>
+</table>
+{% endblock %}

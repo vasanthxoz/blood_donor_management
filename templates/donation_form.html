@@ -1,0 +1,49 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Register Donation & Create Stock</h2>
+<hr>
+
+<form method="POST" class="w-50">
+
+    <div class="mb-3">
+        <label>Donor</label>
+
+        <select name="donor_id" class="form-select" required>
+
+            {% for d in donors %}
+
+                <option value="{{ d.donor_id }}"
+                    {% if selected_donor_id and d.donor_id|string == selected_donor_id|string %}
+                        selected
+                    {% endif %}
+                >
+                    {{ d.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Quantity (Units)</label>
+
+        <input
+            type="number"
+            step="0.1"
+            min="0.1"
+            name="quantity"
+            class="form-control"
+            required
+        >
+    </div>
+
+    <button type="submit" class="btn btn-danger">
+        Register (Executes Transaction)
+    </button>
+
+</form>
+
+{% endblock %}

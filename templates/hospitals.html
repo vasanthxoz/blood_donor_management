@@ -1,0 +1,8 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3"><h2>Hospitals</h2><a href="{{ url_for('add_hospital') }}" class="btn btn-primary">Add Hospital</a></div>
+<table class="table table-bordered">
+    <thead class="table-dark"><tr><th>ID</th><th>Name</th><th>Address</th><th>Phone</th></tr></thead>
+    <tbody>{% for r in records %}<tr><td>{{ r.hospital_id }}</td><td>{{ r.hospital_name }}</td><td>{{ r.address }}</td><td>{{ r.phone }}</td></tr>{% endfor %}</tbody>
+</table>
+{% endblock %}

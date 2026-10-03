@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3"><h2>Medical Eligibility</h2><a href="{{ url_for('add_eligibility') }}" class="btn btn-primary">Update Status</a></div>
+<table class="table table-bordered">
+    <thead class="table-dark"><tr><th>Donor</th><th>Group</th><th>Date Evaluated</th><th>Status</th></tr></thead>
+    <tbody>
+        {% for r in records %}<tr><td>{{ r.name }}</td><td>{{ r.blood_group }}</td><td>{{ r.eligible_date }}</td>
+        <td><span class="badge bg-{{ 'success' if r.status=='Approved' else 'danger' }}">{{ r.status }}</span></td></tr>{% endfor %}
+    </tbody>
+</table>
+{% endblock %}

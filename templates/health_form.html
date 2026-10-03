@@ -1,0 +1,70 @@
+{% extends 'base.html' %}
+{% block content %}
+
+<h2>Add Health Record</h2>
+<hr>
+
+<form method="POST" class="w-50">
+
+    <div class="mb-3">
+        <label>Donor</label>
+
+        <select name="donor_id" class="form-select" required>
+
+            {% for d in donors %}
+
+                <option value="{{ d.donor_id }}"
+                    {% if selected_donor_id and d.donor_id|string == selected_donor_id|string %}
+                        selected
+                    {% endif %}
+                >
+                    {{ d.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Weight (kg)</label>
+        <input type="number"
+               step="0.1"
+               name="weight"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Blood Pressure</label>
+        <input type="text"
+               name="bp"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Hemoglobin</label>
+        <input type="number"
+               step="0.1"
+               name="hb"
+               class="form-control"
+               required>
+    </div>
+
+    <div class="mb-3">
+        <label>Overall Status</label>
+
+        <select name="status" class="form-select">
+            <option>Fit</option>
+            <option>Unfit</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">
+        Save
+    </button>
+
+</form>
+
+{% endblock %}

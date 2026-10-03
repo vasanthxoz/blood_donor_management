@@ -1,0 +1,66 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Request Blood</h2>
+<hr>
+
+<form method="POST" class="w-50">
+
+    <div class="mb-3">
+        <label>Hospital</label>
+
+        <select name="hospital_id" class="form-select" required>
+            {% for h in hospitals %}
+                <option value="{{ h.hospital_id }}">
+                    {{ h.hospital_name }}
+                </option>
+            {% endfor %}
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Blood Group</label>
+
+        <select name="bg" class="form-select" required>
+            <option value="A+">A+</option>
+            <option value="A-">A-</option>
+            <option value="B+">B+</option>
+            <option value="B-">B-</option>
+            <option value="AB+">AB+</option>
+            <option value="AB-">AB-</option>
+            <option value="O+">O+</option>
+            <option value="O-">O-</option>
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Quantity (Units)</label>
+
+        <input
+            type="number"
+            step="0.1"
+            min="0.1"
+            name="qty"
+            class="form-control"
+            required
+        >
+    </div>
+
+    <div class="mb-3">
+        <label>Priority</label>
+
+        <select name="priority" class="form-select" required>
+            <option value="Normal">Normal</option>
+            <option value="Urgent">Urgent</option>
+            <option value="Emergency">Emergency</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-warning">
+        Submit Request
+    </button>
+
+</form>
+
+{% endblock %}s

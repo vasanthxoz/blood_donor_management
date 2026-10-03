@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Expiry Tracking</h2>
+<hr>
+
+<table class="table table-bordered">
+    <thead class="table-dark">
+        <tr>
+            <th>Stock ID</th>
+            <th>Group</th>
+            <th>Qty</th>
+            <th>Expiry Days</th>
+            <th>Alert Status</th>
+        </tr>
+    </thead>
+
+    <tbody>
+        {% for s in stock %}
+        <tr>
+            <td>{{ s.stock_id }}</td>
+            <td>{{ s.blood_group }}</td>
+            <td>{{ s.quantity }}</td>
+
+            <td>
+                {% if s.days_remaining < 0 %}
+                    Expired
+                {% else %}
+                    {{ s.days_remaining }} days to expiry
+                {% endif %}
+            </td>
+
+            <td>
+                {% if s.alert_status == 'Expired' %}
+                    <span class="badge bg-danger">Expired</span>
+
+                {% elif s.alert_status == 'Expiring Soon' %}
+                    <span class="badge bg-warning text-dark">Expiring Soon</span>
+
+                {% else %}
+                    <span class="badge bg-success">Safe</span>
+                {% endif %}
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}

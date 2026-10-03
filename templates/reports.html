@@ -1,0 +1,97 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Reports</h2>
+<hr>
+
+<!-- =========================================================
+     HOSPITAL BLOOD REQUEST AND ALLOCATION
+     ========================================================= -->
+
+<div class="card">
+
+    <div class="card-header">
+        Hospital Blood Request Summary
+    </div>
+
+    <div class="card-body">
+
+        <table class="table table-bordered">
+
+            <thead class="table-dark">
+
+                <tr>
+                    <th>Hospital</th>
+                    <th>Blood Group</th>
+                    <th>Quantity</th>
+                    <th>Priority</th>
+                    <th>Date</th>
+                    <th>Allocation Status</th>
+                </tr>
+
+            </thead>
+
+            <tbody>
+
+                {% for r in blood_requests_report %}
+
+                <tr>
+
+                    <td>
+                        {{ r.hospital_name }}
+                    </td>
+
+                    <td>
+                        {{ r.blood_group }}
+                    </td>
+
+                    <td>
+                        {{ r.quantity }}
+                    </td>
+
+                    <td>
+                        {{ r.priority }}
+                    </td>
+
+                    <td>
+                        {{ r.request_date }}
+                    </td>
+
+                    <td>
+
+                        {% if r.status == 'Fulfilled' %}
+
+                            <span class="badge bg-success">
+                                Allocated Successfully
+                            </span>
+
+                        {% elif r.status == 'Pending' %}
+
+                            <span class="badge bg-warning text-dark">
+                                Pending Allocation
+                            </span>
+
+                        {% else %}
+
+                            <span class="badge bg-secondary">
+                                {{ r.status }}
+                            </span>
+
+                        {% endif %}
+
+                    </td>
+
+                </tr>
+
+                {% endfor %}
+
+            </tbody>
+
+        </table>
+
+    </div>
+
+</div>
+
+{% endblock %}

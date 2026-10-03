@@ -1,0 +1,10 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Add Hospital</h2><hr>
+<form method="POST" class="w-50">
+    <div class="mb-3"><label>Name</label><input type="text" name="name" class="form-control" required></div>
+    <div class="mb-3"><label>Address</label><textarea name="address" class="form-control"></textarea></div>
+    <div class="mb-3"><label>Phone</label><input type="text" name="phone" class="form-control" required></div>
+    <button type="submit" class="btn btn-success">Save</button>
+</form>
+{% endblock %}

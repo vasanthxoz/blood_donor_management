@@ -1,0 +1,11 @@
+{% extends 'base.html' %}
+{% block content %}
+<h2>Blood Stock Dashboard</h2><hr>
+<table class="table table-bordered">
+    <thead class="table-dark"><tr><th>Stock ID</th><th>Group</th><th>Qty</th><th>Collected</th><th>Expiry</th><th>Status</th></tr></thead>
+    <tbody>
+        {% for s in stock %}<tr><td>{{ s.stock_id }}</td><td>{{ s.blood_group }}</td><td>{{ s.quantity }}</td><td>{{ s.collection_date }}</td><td>{{ s.expiry_date }}</td>
+        <td><span class="badge bg-{{ 'success' if s.status=='Available' else 'secondary' }}">{{ s.status }}</span></td></tr>{% endfor %}
+    </tbody>
+</table>
+{% endblock %}

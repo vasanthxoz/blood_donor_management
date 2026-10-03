@@ -1,0 +1,45 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<h2>Record Eligibility Decision</h2>
+<hr>
+
+<form method="POST" class="w-50">
+
+    <div class="mb-3">
+        <label>Donor</label>
+
+        <select name="donor_id" class="form-select" required>
+
+            {% for d in donors %}
+
+                <option value="{{ d.donor_id }}"
+                    {% if selected_donor_id and d.donor_id|string == selected_donor_id|string %}
+                        selected
+                    {% endif %}
+                >
+                    {{ d.name }}
+                </option>
+
+            {% endfor %}
+
+        </select>
+    </div>
+
+    <div class="mb-3">
+        <label>Decision</label>
+
+        <select name="status" class="form-select" required>
+            <option value="Approved">Approved</option>
+            <option value="Not Approved">Not Approved</option>
+        </select>
+    </div>
+
+    <button type="submit" class="btn btn-primary">
+        Record Decision
+    </button>
+
+</form>
+
+{% endblock %}

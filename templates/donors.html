@@ -1,0 +1,13 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="d-flex justify-content-between mb-3">
+    <h2>Donors</h2>
+    <a href="{{ url_for('add_donor') }}" class="btn btn-primary">Add Donor</a>
+</div>
+<table class="table table-bordered">
+    <thead class="table-dark"><tr><th>ID</th><th>Name</th><th>Age</th><th>Blood Group</th><th>Phone</th></tr></thead>
+    <tbody>
+        {% for d in donors %}<tr><td>{{ d.donor_id }}</td><td>{{ d.name }}</td><td>{{ d.age }}</td><td>{{ d.blood_group }}</td><td>{{ d.phone }}</td></tr>{% endfor %}
+    </tbody>
+</table>
+{% endblock %}
